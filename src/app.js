@@ -61,6 +61,7 @@ function update(action) {
   if (time_now() - start_time > TIME_OUT) {
     Vibe.vibrate('short');
     Vibe.vibrate('short');
+    summary.body('Final Score: ' + score);
     summary.show();
     main.hide();
   }
@@ -74,7 +75,10 @@ function update(action) {
     main.subtitle('Let\'s go!');
   }
   target = get_rand_button();
-  main.body(target + '\nscore:' + score);
+  main.body(target + '\nscore: ' + 
+            score  + '\n' + 
+            'Time: ' +
+            (time_now() - start_time).toFixed(2));
 }
 
 // Get Target
