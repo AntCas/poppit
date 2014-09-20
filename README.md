@@ -1,4 +1,4 @@
 poppit
 ======
 
-Poppit!
+Poppit! The Bop-it! inspired game for Pebble!
