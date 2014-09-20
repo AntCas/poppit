@@ -6,9 +6,8 @@ var target = get_rand_button();
 var start_time = time_now();
 
 var score = 0;
-
-var BONUS_TIME = 3; // Seconds awarded for success
-var TIME_OUT = 10; // Seconds that warrant punishment
+var bonus_time = 3; // Seconds awarded for success
+var seconds = 25; // Seconds before punishment
 
 Accel.init();
 
@@ -17,9 +16,9 @@ var main = new UI.Card({
   title: 'oppit!',
   icon: 'images/menu_icon.png',
   subtitle: 'Let\'s go!',
-  body: target + '\nscore: ' + score,
+  body: target + '\nscore: ' + score + 
+        '\n' + line_time()//'|' * time_remaining(),
 });
-
 
 // Summary Screen
 var summary = new UI.Card({
@@ -58,7 +57,7 @@ main.on('click', 'select', function(e) {
 
 // Update title screen
 function update(action) {
-  if (time_now() - start_time > TIME_OUT) {
+  if (time_remaining() <= 0) {
     Vibe.vibrate('short');
     Vibe.vibrate('short');
     summary.body('Final Score: ' + score);
@@ -71,14 +70,15 @@ function update(action) {
   }
   else { // (target == action)
     score++;
-    start_time += BONUS_TIME;
+    seconds += bonus_time;
+    if (bonus_time > 0.5) { // Faster!
+      bonus_time -= 0.5;
+    }
     main.subtitle('Let\'s go!');
   }
   target = get_rand_button();
   main.body(target + '\nscore: ' + 
-            score  + '\n' + 
-            'Time: ' +
-            (time_now() - start_time).toFixed(2));
+            score  + '\n' + line_time());// '|' * time_remaining());
 }
 
 // Get Target
@@ -91,4 +91,18 @@ function get_rand_button() {
 // Get Current Time (Seconds since epoch)
 function time_now(){
   return new Date().getTime() / 1000;
+}
+
+// Get Time remaining
+function time_remaining() {
+  return Math.round(seconds - (time_now() - start_time));
+}
+
+// Returns string of lines representing time left
+function line_time() {
+  var output = "";
+  for (var i = 0; i < time_remaining(); i++){
+    output += '|';
+  }
+  return output;
 }
