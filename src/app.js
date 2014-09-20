@@ -5,9 +5,10 @@ var Vibe = require('ui/vibe');
 var target = get_rand_button();
 var start_time = time_now();
 
-var score = 0;
+var score = 0; // # correct taps - # incorrect taps
 var bonus_time = 3; // Seconds awarded for success
 var seconds = 25; // Seconds before punishment
+var bonus_penalty = 0.2; // A higher # makes the game get harder faster
 
 Accel.init();
 
@@ -72,7 +73,7 @@ function update(action) {
     score++;
     seconds += bonus_time;
     if (bonus_time > 0.5) { // Faster!
-      bonus_time -= 0.5;
+      bonus_time -= bonus_penalty;
     }
     main.subtitle('Let\'s go!');
   }
