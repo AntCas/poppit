@@ -18,7 +18,7 @@ var main = new UI.Card({
   icon: 'images/menu_icon.png',
   subtitle: 'Let\'s go!',
   body: target + '\nscore: ' + score + 
-        '\n' + line_time()//'|' * time_remaining(),
+        '\n' + line_time()
 });
 
 // Summary Screen
@@ -79,10 +79,10 @@ function update(action) {
   }
   target = get_rand_button();
   main.body(target + '\nscore: ' + 
-            score  + '\n' + line_time());// '|' * time_remaining());
+            score  + '\n' + line_time());
 }
 
-// Get Target
+// Get Target Action
 function get_rand_button() {
   var button_array = ['up', 'down', 'select', 'tap'];
   var rand_num = Math.floor((Math.random() * 4)); 
