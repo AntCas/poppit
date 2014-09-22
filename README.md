@@ -10,4 +10,4 @@ How to play:
 5. Click the blue play button which should be somewhere on the upper right hand side of the cloud pebble IDE
 6. Play poppit!
 
-NOTE: If you're having trouble creating a new project (Getting the inifinit blue loading bar of death), try the identical ide at this address instead https://morning-shore-3240.herokuapp.com/ide/
+NOTE: If you're having trouble creating a new project (ie. getting the infinite blue loading bar of death), try the identical ide at this address instead https://morning-shore-3240.herokuapp.com/ide/
